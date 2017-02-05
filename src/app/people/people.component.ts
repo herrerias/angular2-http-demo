@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {PeopleService} from "./people.service";
+import {People} from "./people.model";
+import * as moment from "moment";
+import {SwapiBase} from "../shared/swapi.model";
+import {SearchResult} from "../shared/search-result.model";
 
 @Component({
   selector: 'app-people',
@@ -7,27 +11,57 @@ import {PeopleService} from "./people.service";
   styleUrls: ['./people.component.css']
 })
 export class PeopleComponent implements OnInit {
-  private data: Object;
   private loading: boolean;
-  private results: Object[];
+  private next: string;
+  private previous: string;
+  private people: SwapiBase[];
 
   constructor(private peopleService: PeopleService) {
   }
 
   ngOnInit() {
-    console.log('BaseUrl', this.getBaseUrl());
+    this.makeAllRequest();
   }
 
-  makeRequest(): void {
-    this.data = this.peopleService.getAll();
+  makeAllRequest(): void {
+    this.loading = true;
+    this.peopleService.getAll()
+      .subscribe(
+        searchResults => {
+          this.loading = false;
+          this.next = searchResults.next;
+          this.previous = searchResults.previous;
+          this.people = searchResults.results;
+        },
+        err => {
+          this.loading = false;
+          console.log(err);
+        },
+        () =>{
+          this.loading = false;
+        });
   }
 
-  getBaseUrl(): string {
-    return this.peopleService.getBaseUrl();
+  makePageRequest(url: string): boolean{
+    this.peopleService.getPage(url)
+      .subscribe(
+        searchResults => {
+          this.loading = false;
+          this.next = searchResults.next;
+          this.previous = searchResults.previous;
+          this.people = searchResults.results;
+        },
+        err => {
+          this.loading = false;
+          console.log(err);
+        },
+        () =>{
+          this.loading = false;
+        });
+    return false;
   }
 
-  updateResults(results: Object[]): void {
-    this.results = results;
-    console.log("results:", this.results);
+  getMoment(date: any): any {
+    return moment(date).fromNow();
   }
 }

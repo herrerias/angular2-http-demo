@@ -8,12 +8,25 @@ import { PeopleComponent } from './people/people.component';
 import {SwapiService} from "./shared/swapi.service";
 import {PeopleService} from "./people/people.service";
 import { SearchBoxComponent } from './shared/search-box.component';
+import { FilmComponent } from './film/film.component';
+import { SpeciesComponent } from './species/species.component';
+import { StarshipComponent } from './starship/starship.component';
+import { VehicleComponent } from './vehicle/vehicle.component';
+import { PlanetComponent } from './planet/planet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PeopleComponent,
-    SearchBoxComponent
+    SearchBoxComponent,
+    FilmComponent,
+    SpeciesComponent,
+    StarshipComponent,
+    VehicleComponent,
+    SpeciesComponent,
+    StarshipComponent,
+    VehicleComponent,
+    PlanetComponent
   ],
   imports: [
     BrowserModule,

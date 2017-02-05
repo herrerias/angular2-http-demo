@@ -1,6 +1,8 @@
 import {Component, OnInit, Output, EventEmitter, ElementRef, Input} from '@angular/core';
 import {SwapiService} from "./swapi.service";
 import {Observable} from "rxjs";
+import {SwapiBase} from "./swapi.model";
+import {SearchResult} from "./search-result.model";
 
 @Component({
   selector: 'app-search-box',
@@ -11,7 +13,7 @@ import {Observable} from "rxjs";
 export class SearchBoxComponent implements OnInit {
   @Input() queryBase: string;
   @Output() loading: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() results: EventEmitter<Object[]> = new EventEmitter<Object[]>();
+  @Output() results: EventEmitter<SearchResult> = new EventEmitter<SearchResult>();
 
   constructor(public swapi: SwapiService, private el: ElementRef) {
   }
@@ -28,8 +30,7 @@ export class SearchBoxComponent implements OnInit {
       .switch() //ignore all search events but the most recent
       // act on the return of the search, is an Observable[]
       .subscribe(
-        (results: Object[]) => { // on sucesss
-          console.log(results);
+        (results: SearchResult) => { // on sucesss
           this.loading.next(false);
           this.results.next(results);
         },
