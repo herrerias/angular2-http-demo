@@ -1,4 +1,4 @@
-import {People} from "../people/people.model";
+import {People} from "../people/shared/people.model";
 import {SwapiBase} from "../shared/swapi.model";
 import {Film} from "../film/film.model";
 

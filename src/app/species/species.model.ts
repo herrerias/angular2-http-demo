@@ -1,5 +1,5 @@
 import {SwapiBase} from "../shared/swapi.model";
-import {People} from "../people/people.model";
+import {People} from "../people/shared/people.model";
 import {Film} from "../film/film.model";
 
 export class Species extends SwapiBase{

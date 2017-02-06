@@ -8,9 +8,11 @@ export const BASE_URL_API: string = 'http://swapi.co/api/';
 const SEARCH_QUERY: string = '?search=';
 
 @Injectable()
-export class SwapiService {
+export abstract class SwapiService {
   private http: Http;
   private data: SearchResult;
+  //Specific url for the service which inhertis SwapiService. Format: "service_name/"
+  abstract URL_SERVICE: string;
 
   constructor(http: Http) {
     this.http = http;
@@ -43,8 +45,8 @@ export class SwapiService {
       );
   }
 
-  getAll(url: string): Observable<SearchResult> {
-    return this.http.get(BASE_URL_API + url)
+  getAll(): Observable<SearchResult> {
+    return this.http.get(BASE_URL_API + this.URL_SERVICE)
       // calling .json() on the response to return data
       .map((response: Response) => response.json())
       // errors if any

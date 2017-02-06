@@ -1,22 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {PeopleService} from "./people.service";
-import {People} from "./people.model";
+import {StarshipService} from "../shared/starship.service";
 import * as moment from "moment";
-import {SwapiBase} from "../shared/swapi.model";
-import {SearchResult} from "../shared/search-result.model";
+import {SwapiBase} from "../../shared/swapi.model";
 
 @Component({
-  selector: 'app-people',
-  templateUrl: './people.component.html',
-  styleUrls: ['./people.component.css']
+  selector: 'app-starship-list',
+  templateUrl: 'starship-list.component.html',
+  styleUrls: ['starship-list.component.css']
 })
-export class PeopleComponent implements OnInit {
+export class StarshipListComponent implements OnInit {
   private loading: boolean;
   private next: string;
   private previous: string;
-  private people: SwapiBase[];
+  private data: SwapiBase[];
 
-  constructor(private peopleService: PeopleService) {
+  constructor(private starshipService: StarshipService) {
   }
 
   ngOnInit() {
@@ -25,37 +23,37 @@ export class PeopleComponent implements OnInit {
 
   makeAllRequest(): void {
     this.loading = true;
-    this.peopleService.getAll()
+    this.starshipService.getAll()
       .subscribe(
         searchResults => {
           this.loading = false;
           this.next = searchResults.next;
           this.previous = searchResults.previous;
-          this.people = searchResults.results;
+          this.data = searchResults.results;
         },
         err => {
           this.loading = false;
           console.log(err);
         },
-        () =>{
+        () => {
           this.loading = false;
         });
   }
 
-  makePageRequest(url: string): boolean{
-    this.peopleService.getPage(url)
+  makePageRequest(url: string): boolean {
+    this.starshipService.getPage(url)
       .subscribe(
         searchResults => {
           this.loading = false;
           this.next = searchResults.next;
           this.previous = searchResults.previous;
-          this.people = searchResults.results;
+          this.data = searchResults.results;
         },
         err => {
           this.loading = false;
           console.log(err);
         },
-        () =>{
+        () => {
           this.loading = false;
         });
     return false;
@@ -64,4 +62,5 @@ export class PeopleComponent implements OnInit {
   getMoment(date: any): any {
     return moment(date).fromNow();
   }
+
 }

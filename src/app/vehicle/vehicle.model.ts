@@ -1,6 +1,4 @@
 import {SwapiBase} from "../shared/swapi.model";
-import {Film} from "../film/film.model";
-import {People} from "../people/people.model";
 
 export class Vehicle extends SwapiBase{
   name : string;  // The name of this vehicle. The common name, such as "Sand Crawler" or "Speeder bike".
@@ -14,8 +12,8 @@ export class Vehicle extends SwapiBase{
   max_atmosphering_speed : string;  // The maximum speed of this vehicle in the atmosphere.
   cargo_capacity : string;  // The maximum number of kilograms that this vehicle can transport.
   consumables : string // The maximum length of time that this vehicle can provide consumables for its entire crew without having to resupply.
-  films: Film[]; // An array of Film URL Resources that this vehicle has appeared in.
-  pilots: People[]; // An array of People URL Resources that this vehicle has been piloted by.
+  films: string[]; // An array of Film URL Resources that this vehicle has appeared in.
+  pilots: string[]; // An array of People URL Resources that this vehicle has been piloted by.
   url : string;  // the hypermedia URL of this resource.
   created : string;  // the ISO 8601 date format of the time that this resource was created.
   edited : string;  // the ISO 8601 date format of the time that this resource was edited.

@@ -2,7 +2,21 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <app-people></app-people>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['people']">People</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['starships']">Starships</a>
+        </li>
+      </ul>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
 </div>

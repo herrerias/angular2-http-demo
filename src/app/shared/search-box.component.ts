@@ -1,7 +1,6 @@
 import {Component, OnInit, Output, EventEmitter, ElementRef, Input} from '@angular/core';
 import {SwapiService} from "./swapi.service";
 import {Observable} from "rxjs";
-import {SwapiBase} from "./swapi.model";
 import {SearchResult} from "./search-result.model";
 
 @Component({

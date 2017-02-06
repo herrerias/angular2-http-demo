@@ -1,8 +1,8 @@
-import {SwapiBase} from "../shared/swapi.model";
-import {Film} from "../film/film.model";
-import {Species} from "../species/species.model";
-import {Starship} from "../starship/starship.model";
-import {Vehicle} from "../vehicle/vehicle.model";
+import {SwapiBase} from "../../shared/swapi.model";
+import {Film} from "../../film/film.model";
+import {Species} from "../../species/species.model";
+import {Starship} from "../../starships/shared/starship.model";
+import {Vehicle} from "../../vehicle/vehicle.model";
 
 export class People extends SwapiBase{
   name: string; // The name of this person.
@@ -16,7 +16,7 @@ export class People extends SwapiBase{
   homeworld: string; // The URL of a planet resource, a planet that this person was born on or inhabits.
   films: string[]; // An array of film resource URLs that this person has been in.
   species: string[]; // An array of species resource URLs that this person belongs to.
-  starships: string[]; // An array of starship resource URLs that this person has piloted.
+  starships: string[]; // An array of starships resource URLs that this person has piloted.
   vehicles: string[]; // An array of vehicle resource URLs that this person has piloted.
   url: string; // the hypermedia URL of this resource.
   created: string; // the ISO 8601 date format of the time that this resource was created.
